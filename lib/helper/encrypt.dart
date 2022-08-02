@@ -18,7 +18,8 @@ class Encrypt {
     final Key key = Key.fromUtf8(pass);
     final IV iv = IV.fromLength(16);
     final Encrypter encrypter = Encrypter(AES(key));
-    decrypted = encrypter.decrypt(encrypted!, iv: iv);
+    Encrypted preprocess = Encrypted.from64(plainText);
+    decrypted = encrypter.decrypt(preprocess, iv: iv);
     return decrypted!;
   }
 }

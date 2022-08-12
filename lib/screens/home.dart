@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:keep_pass/helper/encrypt.dart';
-import 'package:keep_pass/shared/Utils.dart';
 import 'package:keep_pass/shared/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,9 +12,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool encrypt = true;
-  String labelText = "Encrypt";
-  String hintText = "Encrypted";
+  bool encrypt = false;
+  String labelText = "Decrypt";
   String textToConvert = "";
   bool showPassword = false;
 
@@ -53,6 +52,7 @@ class _HomeState extends State<Home> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
+                    style: GoogleFonts.ibmPlexMono(),
                     controller: passwordController,
                     validator: (val) {
                       if (val == null || val.isEmpty) {
@@ -95,6 +95,7 @@ class _HomeState extends State<Home> {
                         return "Please enter some text to convert";
                       }
                     },
+                    style: GoogleFonts.ibmPlexMono(),
                     controller: inputController,
                     autocorrect: false,
                     enableSuggestions: false,
@@ -104,7 +105,7 @@ class _HomeState extends State<Home> {
                       // prefixIcon: Icon(Icons.lock),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(10.0),
-                      hintText: hintText + " text",
+                      hintText: "Text to convert",
                       // suffixIcon: IconButton(
                       //   onPressed: () {
                       //     setState(() {
@@ -164,6 +165,7 @@ class _HomeState extends State<Home> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
+                    style: GoogleFonts.ibmPlexMono(),
                     controller: resultController,
                     autocorrect: false,
                     enableSuggestions: false,
@@ -196,13 +198,11 @@ class _HomeState extends State<Home> {
       setState(() {
         encrypt = true;
         labelText = "Encrypt";
-        hintText = "Encrypted";
       });
     } else {
       setState(() {
         encrypt = false;
         labelText = "Decrypt";
-        hintText = "Decrypted";
       });
     }
   }
